@@ -396,6 +396,20 @@ class TextDetector(object):
             dt_boxes, elapse = self.predict(img)
         return dt_boxes, elapse
 
+def save_detections(boxes, output_path):
+    """
+    Save the detected bounding boxes to a text file.
+
+    Args:
+        boxes (list): List of detected bounding boxes.
+        output_path (str): Path to save the bounding boxes.
+    """
+    with open(output_path, 'w', encoding='utf-8') as f:
+        for box in boxes:
+            poly = np.array(box).astype(np.int32).reshape((-1))
+            strResult = ','.join([str(p) for p in poly]) + '\n'
+            f.write(strResult)
+
 
 if __name__ == "__main__":
     args = utility.parse_args()
@@ -478,10 +492,12 @@ if __name__ == "__main__":
             else:
                 save_file = image_file
             img_path = os.path.join(
-                draw_img_save_dir, "det_res_{}".format(os.path.basename(save_file))
+                draw_img_save_dir, os.path.basename(save_file)
             )
             cv2.imwrite(img_path, src_im)
             logger.info("The visualized image saved in {}".format(img_path))
+            fout = os.path.join(draw_img_save_dir,os.path.splitext(os.path.basename(save_file))[0] +'.txt')
+            save_detections(dt_boxes,fout)
 
     with open(os.path.join(draw_img_save_dir, "det_results.txt"), "w") as f:
         f.writelines(save_results)
