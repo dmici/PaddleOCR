@@ -483,7 +483,7 @@ if __name__ == "__main__":
                     "{} The predict time of {}: {}".format(idx, image_file, elapse)
                 )
 
-            src_im = utility.draw_text_det_res(dt_boxes, img)
+            #src_im = utility.draw_text_det_res(dt_boxes, img)
 
             if flag_gif:
                 save_file = image_file[:-3] + "png"
@@ -494,7 +494,7 @@ if __name__ == "__main__":
             img_path = os.path.join(
                 draw_img_save_dir, os.path.basename(save_file)
             )
-            cv2.imwrite(img_path, src_im)
+            #cv2.imwrite(img_path, src_im)
             logger.info("The visualized image saved in {}".format(img_path))
             fout = os.path.join(draw_img_save_dir,os.path.splitext(os.path.basename(save_file))[0] +'.txt')
             save_detections(dt_boxes,fout)
