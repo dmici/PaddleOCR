@@ -483,7 +483,7 @@ if __name__ == "__main__":
                     "{} The predict time of {}: {}".format(idx, image_file, elapse)
                 )
 
-            #src_im = utility.draw_text_det_res(dt_boxes, img)
+            src_im = utility.draw_text_det_res(dt_boxes, img)
 
             if flag_gif:
                 save_file = image_file[:-3] + "png"
