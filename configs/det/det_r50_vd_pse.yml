@@ -53,7 +53,7 @@ Optimizer:
 PostProcess:
   name: PSEPostProcess
   thresh: 0
-  box_thresh: 0.85
+  box_thresh: 0.3
   min_area: 16
   box_type: quad # 'quad' or 'poly'
   scale: 1
